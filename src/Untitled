@@ -1,0 +1,27 @@
+import React, { useState } from 'react';
+
+function App() {
+  const [page, setPage] = useState('dashboard');
+
+  return (
+    <div style={{display:'flex', minHeight:'100vh', fontFamily:'sans-serif'}}>
+      <nav style={{width:200, background:'#0D1B2A', padding:'1rem', color:'white'}}>
+        <div style={{fontSize:16, fontWeight:700, marginBottom:'2rem'}}>MediFlow</div>
+        {['dashboard','transactions','fraud','chatbot'].map(p => (
+          <div key={p} onClick={() => setPage(p)}
+            style={{padding:'10px', cursor:'pointer', borderRadius:6, marginBottom:4,
+              background: page===p ? 'rgba(15,110,86,0.3)' : 'transparent',
+              color: page===p ? '#4DCBA4' : '#aaa'}}>
+            {p.charAt(0).toUpperCase()+p.slice(1)}
+          </div>
+        ))}
+      </nav>
+      <main style={{flex:1, padding:'2rem', background:'#F4F6F8'}}>
+        <h1>{page.charAt(0).toUpperCase()+page.slice(1)}</h1>
+        <p>MediFlow · {page} page</p>
+      </main>
+    </div>
+  );
+}
+
+export default App;
